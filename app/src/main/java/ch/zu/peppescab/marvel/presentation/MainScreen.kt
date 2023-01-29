@@ -11,10 +11,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,6 +51,7 @@ class MainScreen : ComponentActivity() {
                                     .padding(8.dp)
                                     .clickable(onClick = { }),
                             )
+                            Text(text=it.name, style = TextStyle( fontSize = 20.sp , fontFamily = FontFamily.SansSerif))
                         }
                         // Text(text = textToShow)
                     }

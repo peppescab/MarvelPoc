@@ -1,5 +1,6 @@
 package ch.zu.peppescab.marvel.di
 
+import ch.zu.peppescab.marvel.data.network.CharsRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,5 +40,10 @@ object NetworkModule {
         .client(okHttpClient)
         .build()
 
+    @Singleton
+    @Provides
+    fun provideCharsRemoteDataSource(retrofit: Retrofit): CharsRemoteDataSource = retrofit.create(
+        CharsRemoteDataSource::class.java
+    )
 
 }

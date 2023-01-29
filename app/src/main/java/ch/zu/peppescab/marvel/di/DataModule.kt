@@ -2,27 +2,24 @@ package ch.zu.peppescab.marvel.di
 
 import ch.zu.peppescab.marvel.data.CharsRepository
 import ch.zu.peppescab.marvel.data.CharsRepositoryImpl
-import ch.zu.peppescab.marvel.data.network.CharsRemoteDataSource
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DataModule {
+abstract class DataModule {
 
+    /**
+     * Bind instead of provide if just an element in constructor
+     * https://www.valueof.io/blog/inject-provides-binds-dependencies-dagger-hilt
+     */
     @Singleton
-    @Provides
-    fun provideCharsRemoteDataSource(retrofit: Retrofit): CharsRemoteDataSource = retrofit.create(
-        CharsRemoteDataSource::class.java
-    )
-
-    @Singleton
-    @Provides
-    fun provideCharsRepository(charsRemoteDataSource: CharsRemoteDataSource): CharsRepository =
-        CharsRepositoryImpl(charsRemoteDataSource)
+    @Binds
+    abstract fun bindCharsRepository(
+        charsRepositoryImpl: CharsRepositoryImpl
+    ): CharsRepository
 
 }

@@ -17,5 +17,5 @@ data class Result(
 )
 
 fun Result.toCharModel() = CharModel(
-    this.name, this.id
+    this.name, this.id, this.thumbnail.path+"."+this.thumbnail.extension
 )
